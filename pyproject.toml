@@ -1,0 +1,14 @@
+[project]
+name = "grpc-poc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]==0.115.6",
+    "grpc-interceptor>=0.15.4",
+    "grpcio-tools==1.68.1",
+    "grpcio==1.68.1",
+    "pydantic>=2.10.4",
+    "ruff==0.8.4",
+]
