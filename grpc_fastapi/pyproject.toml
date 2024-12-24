@@ -11,4 +11,5 @@ dependencies = [
     "grpcio==1.68.1",
     "pydantic>=2.10.4",
     "ruff==0.8.4",
+    "uvicorn>=0.34.0",
 ]

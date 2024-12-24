@@ -141,6 +141,7 @@ dependencies = [
     { name = "grpcio-tools" },
     { name = "pydantic" },
     { name = "ruff" },
+    { name = "uvicorn" },
 ]
 
 [package.metadata]
@@ -151,6 +152,7 @@ requires-dist = [
     { name = "grpcio-tools", specifier = "==1.68.1" },
     { name = "pydantic", specifier = ">=2.10.4" },
     { name = "ruff", specifier = "==0.8.4" },
+    { name = "uvicorn", specifier = ">=0.34.0" },
 ]
 
 [[package]]

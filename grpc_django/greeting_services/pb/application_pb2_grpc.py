@@ -4,7 +4,8 @@
 import grpc
 import warnings
 
-import pb.sample_pb2 as sample__pb2
+import pb.application_pb2 as application__pb2
+# import application_pb2 as application__pb2
 
 GRPC_GENERATED_VERSION = "1.68.1"
 GRPC_VERSION = grpc.__version__
@@ -22,15 +23,15 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in sample_pb2_grpc.py depends on"
+        + f" but the generated code in application_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class GreeterStub(object):
-    """The greeting service definition."""
+class ApplicationServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -38,62 +39,62 @@ class GreeterStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SayHello = channel.unary_unary(
-            "/Greeter/SayHello",
-            request_serializer=sample__pb2.HelloRequest.SerializeToString,
-            response_deserializer=sample__pb2.HelloReply.FromString,
+        self.ApplicationData = channel.unary_unary(
+            "/ApplicationService/ApplicationData",
+            request_serializer=application__pb2.ApplicationRequest.SerializeToString,
+            response_deserializer=application__pb2.ApplicationResponse.FromString,
             _registered_method=True,
         )
-        self.SayHelloAgain = channel.unary_unary(
-            "/Greeter/SayHelloAgain",
-            request_serializer=sample__pb2.HelloRequest.SerializeToString,
-            response_deserializer=sample__pb2.HelloReply.FromString,
+        self.UserData = channel.unary_unary(
+            "/ApplicationService/UserData",
+            request_serializer=application__pb2.UserRequest.SerializeToString,
+            response_deserializer=application__pb2.UserResponse.FromString,
             _registered_method=True,
         )
 
 
-class GreeterServicer(object):
-    """The greeting service definition."""
+class ApplicationServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
 
-    def SayHello(self, request, context):
-        """Sends a greeting"""
+    def ApplicationData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
-    def SayHelloAgain(self, request, context):
-        """Sends another greeting"""
+    def UserData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
 
-def add_GreeterServicer_to_server(servicer, server):
+def add_ApplicationServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        "SayHello": grpc.unary_unary_rpc_method_handler(
-            servicer.SayHello,
-            request_deserializer=sample__pb2.HelloRequest.FromString,
-            response_serializer=sample__pb2.HelloReply.SerializeToString,
+        "ApplicationData": grpc.unary_unary_rpc_method_handler(
+            servicer.ApplicationData,
+            request_deserializer=application__pb2.ApplicationRequest.FromString,
+            response_serializer=application__pb2.ApplicationResponse.SerializeToString,
         ),
-        "SayHelloAgain": grpc.unary_unary_rpc_method_handler(
-            servicer.SayHelloAgain,
-            request_deserializer=sample__pb2.HelloRequest.FromString,
-            response_serializer=sample__pb2.HelloReply.SerializeToString,
+        "UserData": grpc.unary_unary_rpc_method_handler(
+            servicer.UserData,
+            request_deserializer=application__pb2.UserRequest.FromString,
+            response_serializer=application__pb2.UserResponse.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        "Greeter", rpc_method_handlers
+        "ApplicationService", rpc_method_handlers
     )
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers("Greeter", rpc_method_handlers)
+    server.add_registered_method_handlers("ApplicationService", rpc_method_handlers)
 
 
 # This class is part of an EXPERIMENTAL API.
-class Greeter(object):
-    """The greeting service definition."""
+class ApplicationService(object):
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SayHello(
+    def ApplicationData(
         request,
         target,
         options=(),
@@ -108,9 +109,9 @@ class Greeter(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            "/Greeter/SayHello",
-            sample__pb2.HelloRequest.SerializeToString,
-            sample__pb2.HelloReply.FromString,
+            "/ApplicationService/ApplicationData",
+            application__pb2.ApplicationRequest.SerializeToString,
+            application__pb2.ApplicationResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -123,7 +124,7 @@ class Greeter(object):
         )
 
     @staticmethod
-    def SayHelloAgain(
+    def UserData(
         request,
         target,
         options=(),
@@ -138,9 +139,9 @@ class Greeter(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            "/Greeter/SayHelloAgain",
-            sample__pb2.HelloRequest.SerializeToString,
-            sample__pb2.HelloReply.FromString,
+            "/ApplicationService/UserData",
+            application__pb2.UserRequest.SerializeToString,
+            application__pb2.UserResponse.FromString,
             options,
             channel_credentials,
             insecure,

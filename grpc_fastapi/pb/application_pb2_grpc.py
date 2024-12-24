@@ -30,7 +30,7 @@ if _version_not_supported:
 
 
 class ApplicationServiceStub(object):
-    """The greeting service definition."""
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -44,13 +44,25 @@ class ApplicationServiceStub(object):
             response_deserializer=application__pb2.ApplicationResponse.FromString,
             _registered_method=True,
         )
+        self.UserData = channel.unary_unary(
+            "/ApplicationService/UserData",
+            request_serializer=application__pb2.UserRequest.SerializeToString,
+            response_deserializer=application__pb2.UserResponse.FromString,
+            _registered_method=True,
+        )
 
 
 class ApplicationServiceServicer(object):
-    """The greeting service definition."""
+    """Missing associated documentation comment in .proto file."""
 
     def ApplicationData(self, request, context):
-        """Sends a greeting"""
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def UserData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -63,6 +75,11 @@ def add_ApplicationServiceServicer_to_server(servicer, server):
             request_deserializer=application__pb2.ApplicationRequest.FromString,
             response_serializer=application__pb2.ApplicationResponse.SerializeToString,
         ),
+        "UserData": grpc.unary_unary_rpc_method_handler(
+            servicer.UserData,
+            request_deserializer=application__pb2.UserRequest.FromString,
+            response_serializer=application__pb2.UserResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
         "ApplicationService", rpc_method_handlers
@@ -73,7 +90,7 @@ def add_ApplicationServiceServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class ApplicationService(object):
-    """The greeting service definition."""
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def ApplicationData(
@@ -94,6 +111,36 @@ class ApplicationService(object):
             "/ApplicationService/ApplicationData",
             application__pb2.ApplicationRequest.SerializeToString,
             application__pb2.ApplicationResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def UserData(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/ApplicationService/UserData",
+            application__pb2.UserRequest.SerializeToString,
+            application__pb2.UserResponse.FromString,
             options,
             channel_credentials,
             insecure,

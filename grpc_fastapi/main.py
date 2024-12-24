@@ -1,37 +1,41 @@
-from typing import Union
+from fastapi import FastAPI
 import grpc
 from concurrent import futures
-from fastapi import FastAPI
-from grpc_interceptor import ExceptionToStatusInterceptor
-from pb.sample_pb2_grpc import add_GreeterServicer_to_server, GreeterServicer
+from pb.application_pb2 import ApplicationResponse, UserResponse
+from pb.application_pb2_grpc import (
+    ApplicationServiceServicer,
+    add_ApplicationServiceServicer_to_server,
+)
 
 app = FastAPI()
 
 
-# @app.get("/")
-# def read_root():
-#     return {"Hello": "World"}
-#
-#
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: Union[str, None] = None):
-#     return {"item_id": item_id, "q": q}
+class ApplicationService(ApplicationServiceServicer):
+    def ApplicationData(self, request, context):
+        return ApplicationResponse(
+            data=f"Processed Application ID: {request.application_id}"
+        )
+
+    def UserData(self, request, context):
+        # Dummy user data
+        return UserResponse(name="John Doe", email="john.doe@example.com")
 
 
-class GreeterService(GreeterServicer):
-    pass
-
-
-def serve():
-    interceptors = [ExceptionToStatusInterceptor()]
-    server = grpc.server(
-        futures.ThreadPoolExecutor(max_workers=10), interceptors=interceptors
-    )
-    add_GreeterServicer_to_server(GreeterService(), server)
+def start_grpc_server():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    add_ApplicationServiceServicer_to_server(ApplicationService(), server)
     server.add_insecure_port("[::]:50051")
     server.start()
+    print("gRPC server started on port 50051...")
     server.wait_for_termination()
 
 
 if __name__ == "__main__":
-    serve()
+    import threading
+
+    grpc_thread = threading.Thread(target=start_grpc_server, daemon=True)
+    grpc_thread.start()
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+

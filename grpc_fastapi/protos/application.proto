@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+service ApplicationService {
+    rpc ApplicationData (ApplicationRequest) returns (ApplicationResponse);
+    rpc UserData (UserRequest) returns (UserResponse);
+}
+
+message ApplicationRequest {
+    int32 application_id = 1;
+}
+
+message ApplicationResponse {
+    string data = 1;
+}
+
+message UserRequest {
+    int32 user_id = 1;
+}
+
+message UserResponse {
+    string name = 1;
+    string email = 2;
+}
+

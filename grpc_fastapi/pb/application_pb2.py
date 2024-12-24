@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11\x61pplication.proto\",\n\x12\x41pplicationRequest\x12\x16\n\x0e\x61pplication_id\x18\x01 \x01(\x03\"#\n\x13\x41pplicationResponse\x12\x0c\n\x04name\x18\x01 \x01(\t2T\n\x12\x41pplicationService\x12>\n\x0f\x41pplicationData\x12\x13.ApplicationRequest\x1a\x14.ApplicationResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11\x61pplication.proto\",\n\x12\x41pplicationRequest\x12\x16\n\x0e\x61pplication_id\x18\x01 \x01(\x05\"#\n\x13\x41pplicationResponse\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x1e\n\x0bUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\"+\n\x0cUserResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t2{\n\x12\x41pplicationService\x12<\n\x0f\x41pplicationData\x12\x13.ApplicationRequest\x1a\x14.ApplicationResponse\x12\'\n\x08UserData\x12\x0c.UserRequest\x1a\r.UserResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,6 +35,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_APPLICATIONREQUEST']._serialized_end=65
   _globals['_APPLICATIONRESPONSE']._serialized_start=67
   _globals['_APPLICATIONRESPONSE']._serialized_end=102
-  _globals['_APPLICATIONSERVICE']._serialized_start=104
-  _globals['_APPLICATIONSERVICE']._serialized_end=188
+  _globals['_USERREQUEST']._serialized_start=104
+  _globals['_USERREQUEST']._serialized_end=134
+  _globals['_USERRESPONSE']._serialized_start=136
+  _globals['_USERRESPONSE']._serialized_end=179
+  _globals['_APPLICATIONSERVICE']._serialized_start=181
+  _globals['_APPLICATIONSERVICE']._serialized_end=304
 # @@protoc_insertion_point(module_scope)
