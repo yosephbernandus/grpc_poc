@@ -8,3 +8,5 @@ wheels/
 
 # Virtual environments
 .venv
+grpc_django/greeting_services/db.sqlite3
+
