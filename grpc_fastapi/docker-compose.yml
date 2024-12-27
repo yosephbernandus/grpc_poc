@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  fastapi:
+    container_name: fastapi-app
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    restart: always
+    ports:
+      - "8000:8000"
+
+  grpc_poc_server:
+    container_name: grpc-poc-server
+    build:
+      context: .
+      dockerfile: Dockerfile.grpc
+    restart: always
+    ports:
+      - "50051:50051"
+
