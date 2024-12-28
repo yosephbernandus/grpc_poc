@@ -22,9 +22,9 @@ def start_grpc_server():
     # Create a gRPC server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     add_ApplicationServiceServicer_to_server(ApplicationService(), server)
-    server.add_insecure_port("[::]:50051")
+    server.add_insecure_port("0.0.0.0:50053")
     server.start()
-    print("gRPC server started on port 50051...")
+    print("gRPC server started on port 50053...")
     server.wait_for_termination()
 
 

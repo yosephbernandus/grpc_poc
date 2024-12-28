@@ -9,4 +9,5 @@ dependencies = [
     "grpc-interceptor>=0.15.4",
     "grpcio-tools>=1.68.1",
     "grpcio>=1.68.1",
+    "granian>=1.7.2",
 ]

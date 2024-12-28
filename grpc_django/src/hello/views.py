@@ -14,4 +14,4 @@ def application_data_view(request):
 def user_data_view(request):
     user_id = 1  # Replace with actual logic to determine the user ID
     grpc_response = get_user_data(user_id)
-    return JsonResponse({"user_data": grpc_response})
+    return JsonResponse({"user_data": grpc_response.name})

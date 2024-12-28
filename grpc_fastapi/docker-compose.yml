@@ -1,4 +1,7 @@
 version: "3.8"
+networks:
+  grpc_network:
+    name: grpc_network
 
 services:
   fastapi:
@@ -8,7 +11,9 @@ services:
       dockerfile: Dockerfile.app
     restart: always
     ports:
-      - "8000:8000"
+      - "8001:8001"
+    networks:
+      - grpc_network
 
   grpc_poc_server:
     container_name: grpc-poc-server
@@ -17,5 +22,7 @@ services:
       dockerfile: Dockerfile.grpc
     restart: always
     ports:
-      - "50051:50051"
+      - "50053:50053"
+    networks:
+      - grpc_network
 

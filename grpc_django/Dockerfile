@@ -1,7 +1,6 @@
 FROM python:3.13-slim-bookworm AS base
 
-# install uv dependencies
-# RUN python -m pip install uv --no-cache-dir
+# install pdm dependencies
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 FROM base AS build
@@ -18,11 +17,10 @@ COPY --from=build /app/dist/*.whl .
 RUN chown -R nonroot /app/*whl
 USER nonroot
 RUN pip install *.whl --no-cache-dir --prefer-binary
-
 ENV PATH="/home/nonroot/.local/bin:$PATH"
 WORKDIR /home/nonroot/.local/lib/python3.13/site-packages/
-COPY src/app .
 
-EXPOSE 8001
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4"]
-
+COPY src/manage.py .
+RUN pip install granian
+EXPOSE 8000 50051
+CMD ["python", "-m", "granian", "--host", "0.0.0.0", "--interface", "wsgi", "greeting_services.wsgi:application"]

@@ -1,0 +1,17 @@
+version: "3.8"
+networks:
+  grpc_network:
+    name: grpc_network
+    external: true
+
+services:
+  django_grpc:
+    container_name: django_grpc
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8000:8000
+    networks:
+      - grpc_network

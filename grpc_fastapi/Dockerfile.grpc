@@ -23,6 +23,6 @@ ENV PATH="/home/nonroot/.local/bin:$PATH"
 WORKDIR /home/nonroot/.local/lib/python3.13/site-packages/
 COPY src/grpc_fastapi .
 
-EXPOSE 50051
+EXPOSE 50053
 CMD ["python", "grpc_server.py"]
 
