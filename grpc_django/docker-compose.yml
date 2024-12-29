@@ -16,7 +16,13 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
+    volumes:
+      - shared-volume:/home/nonroot/.local/lib/python3.13/site-packages/static
     ports:
       - 8000:8000
     networks:
       - grpc_network
+
+volumes:
+  shared-volume:
+
