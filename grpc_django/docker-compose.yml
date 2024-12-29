@@ -6,6 +6,11 @@ networks:
 
 services:
   django_grpc:
+    environment:
+      - DEBUG=${DEBUG}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - SECRET_KEY=${SECRET_KEY}
+      - GRPC_SERVER=${GRPC_SERVER}
     container_name: django_grpc
     build:
       context: .
