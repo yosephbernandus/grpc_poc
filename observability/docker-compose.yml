@@ -18,6 +18,9 @@ services:
     restart: unless-stopped
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=7d'
+      - '--storage.tsdb.retention.size=1GB'
     ports:
       - 9090:9090
     volumes:
