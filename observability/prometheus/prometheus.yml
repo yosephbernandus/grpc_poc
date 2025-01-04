@@ -20,12 +20,13 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets:
-          - '192.168.1.8:9090'
+          - '${PROMETHEUS_ADDR}'
   - job_name: django_grpc
     static_configs:
       - targets:
-          - '192.168.1.8:8000'
+          - '${DJANGO_GRPC_ADDR}'
   - job_name: node_exporter
     static_configs:
       - targets:
-          - '192.168.1.8:9100'
+          - '${NODE_EXPORTER_ADDR}'
+
