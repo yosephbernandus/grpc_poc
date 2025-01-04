@@ -1,7 +1,9 @@
 version: "3.9"
 services:
   grafana:
-    image: grafana/grafana:latest
+    build:
+      context: ./grafana  # pointing to prometheus directory
+      dockerfile: Dockerfile.grafana
     container_name: grafana
     restart: unless-stopped
     ports:
