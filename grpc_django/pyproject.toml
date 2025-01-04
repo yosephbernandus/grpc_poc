@@ -10,4 +10,6 @@ dependencies = [
     "grpcio-tools>=1.68.1",
     "grpcio>=1.68.1",
     "granian>=1.7.2",
+    "prometheus-client>=0.21.1",
+    "psutil>=6.1.1",
 ]

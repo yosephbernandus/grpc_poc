@@ -10,6 +10,14 @@ RUN uv sync
 RUN uv build
 
 FROM python:3.13-alpine AS deployment
+
+# Install build dependencies temporarily
+RUN apk add --no-cache \
+    gcc \
+    musl-dev \
+    linux-headers \
+    python3-dev
+
 RUN addgroup -S nonroot \
     && adduser -S nonroot -G nonroot
 WORKDIR /app
