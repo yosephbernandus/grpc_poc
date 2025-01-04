@@ -15,14 +15,17 @@ services:
       - grafana_data:/var/lib/grafana
 
   prometheus:
-    image: prom/prometheus:latest
+    build:
+      context: ./prometheus  # pointing to prometheus directory
+      dockerfile: Dockerfile.prometheus
     container_name: prometheus
     restart: unless-stopped
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention.time=7d'
-      - '--storage.tsdb.retention.size=1GB'
+    # command:
+    #   - /bin/sh
+    #   - -c
+    #   - |
+    #     envsubst < /etc/prometheus/prometheus.yml.template > /etc/prometheus/prometheus.yml
+    #     prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --storage.tsdb.retention.time=7d --storage.tsdb.retention.size=1GB
     ports:
       - 9090:9090
     environment:
@@ -32,6 +35,8 @@ services:
     volumes:
       - ./prometheus:/etc/prometheus
       - prom_data:/prometheus
+    #   - ./prometheus-entrypoint.sh:/prometheus-entrypoint.sh
+    # entrypoint: ["/bin/sh", "/prometheus-entrypoint.sh"]
 
 volumes:
   grafana_data:
