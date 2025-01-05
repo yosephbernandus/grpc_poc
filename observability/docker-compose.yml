@@ -35,7 +35,7 @@ services:
       - DJANGO_GRPC_ADDR=${DJANGO_GRPC_ADDR}
       - NODE_EXPORTER_ADDR=${NODE_EXPORTER_ADDR}
     volumes:
-      - ./prometheus:/etc/prometheus
+      - ./prometheus:/etc/prometheus # will create prometheus.yml since we mount volume on here
       - prom_data:/prometheus
     #   - ./prometheus-entrypoint.sh:/prometheus-entrypoint.sh
     # entrypoint: ["/bin/sh", "/prometheus-entrypoint.sh"]

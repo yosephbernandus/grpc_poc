@@ -2,3 +2,4 @@ FROM prom/prometheus:latest
 USER root
 COPY prometheus-entrypoint.sh /prometheus-entrypoint.sh
 RUN chmod +x /prometheus-entrypoint.sh
+ENTRYPOINT ["/prometheus-entrypoint.sh"]
