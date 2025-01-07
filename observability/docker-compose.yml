@@ -23,6 +23,33 @@ services:
       # - ./grafana:/etc/grafana/dashboards
       - grafana_data:/var/lib/grafana
 
+  loki:
+    build:
+      context: ./loki
+      dockerfile: Dockerfile.loki
+    container_name: loki
+    restart: unless-stopped
+    command: -config.file=/etc/loki/config.yml
+    volumes:
+      - ./loki:/etc/loki
+    ports:
+      - 3100:3100
+    networks:
+      - grpc_network
+
+  promtail:
+    build:
+      context: ./promtail
+      dockerfile: Dockerfile.promtail
+    container_name: promtail
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/config.yml
+    volumes:
+      - ./promtail:/etc/promtail
+      - /var/log:/var/log
+    networks:
+      - grpc_network
+
   prometheus:
     build:
       context: ./prometheus  # pointing to prometheus directory
@@ -49,20 +76,7 @@ services:
     #   - ./prometheus-entrypoint.sh:/prometheus-entrypoint.sh
     # entrypoint: ["/bin/sh", "/prometheus-entrypoint.sh"]
 
-    loki:
-      build:
-        context: ./loki
-        dockerfile: Dockerfile.loki
-      container_name: loki
-      restart: unless-stopped
-      command: -config.file=/etc/loki/config.yml
-      volumes:
-        - ./loki:/etc/loki
-      ports:
-        - 3100:3100
-      networks:
-        - grpc_network
-  
+   
 
 volumes:
   grafana_data:
