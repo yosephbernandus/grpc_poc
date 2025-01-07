@@ -49,6 +49,21 @@ services:
     #   - ./prometheus-entrypoint.sh:/prometheus-entrypoint.sh
     # entrypoint: ["/bin/sh", "/prometheus-entrypoint.sh"]
 
+    loki:
+      build:
+        context: ./loki
+        dockerfile: Dockerfile.loki
+      container_name: loki
+      restart: unless-stopped
+      command: -config.file=/etc/loki/config.yml
+      volumes:
+        - ./loki:/etc/loki
+      ports:
+        - 3100:3100
+      networks:
+        - grpc_network
+  
+
 volumes:
   grafana_data:
   prom_data:
