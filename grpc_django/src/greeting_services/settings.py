@@ -141,8 +141,8 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.handlers.RotatingFileHandler",
             "filename": "/app/logs/app.log",  # Use shared volume path
-            "maxBytes": 1 * 1024 * 1024,  # Rotate logs at 1MB
-            "backupCount": 5,  # Keep 5 files (total ~5MB)
+            "maxBytes": "1048576",  # Rotate logs at 1MB
+            "backupCount": "5",  # Keep 5 files (total ~5MB)
             "formatter": "json",
         },
         "console": {
