@@ -22,6 +22,8 @@ RUN addgroup -S nonroot \
     && adduser -S nonroot -G nonroot
 WORKDIR /app
 COPY --from=build /app/dist/*.whl .
+RUN mkdir -p /app/logs && \
+    chown -R nonroot:nonroot /app
 RUN chown -R nonroot /app/*whl
 USER nonroot
 RUN pip install *.whl --no-cache-dir --prefer-binary
