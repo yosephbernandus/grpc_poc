@@ -17,3 +17,18 @@ scrape_configs:
           job: syslog
           __path__: /var/log/syslog
 
+  - job_name: django
+    static_configs:
+      - targets:
+        - localhost
+        labels:
+          job: django
+          app: django_grpc
+    pipeline_stages:
+      - json:
+          expressions:
+            timestamp: asctime
+            level: levelname
+            message: message
+            name: name
+

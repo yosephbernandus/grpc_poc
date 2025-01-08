@@ -16,7 +16,8 @@ RUN apk add --no-cache \
     gcc \
     musl-dev \
     linux-headers \
-    python3-dev
+    python3-dev \
+    curl
 
 RUN addgroup -S nonroot \
     && adduser -S nonroot -G nonroot
